@@ -83,32 +83,36 @@ int32_t** findIndex(int32_t arraySize,int32_t length){
     }
 
     //start to find index
+    //The rule:to begin with first row which is 0,1,2,....,length-1
+    //the element has the highest index +1 when moving to next row
+    //when any element is larger than arraySize
+    //it needs to be carried until the condition above doesn't happen
 
     int32_t roundInd = 0;
 
     for(int32_t i = 0;i < row;i++){
         if(i == 0){
             for(int32_t j = 0;j < length;j++){
-                indexArr[i][j] = j;
+                indexArr[i][j] = j; //first row: fill 0~length in order
             }
         }else{
             for(int32_t j = 0;j < length;j++){
-                indexArr[i][j] = indexArr[i-1][j];
+                indexArr[i][j] = indexArr[i-1][j];  //duplicate the previous row's content
             }
-            indexArr[i][length-1]++;
-            while(1){
+            indexArr[i][length-1]++;    //the highest index's element + 1
+            while(1){   //use infinite loop to achieve the comment @ line 89
                 roundInd = roundIndex(indexArr[i],length,arraySize);
-                if(roundInd > 0){
-                    indexArr[i][roundInd-1]++;
-                    indexArr[i][roundInd] = indexArr[i][roundInd-1] + 1;
+                if(roundInd > 0){   //roundInd != 0 since we had restricted the number of row correctly
+                    indexArr[i][roundInd-1]++;  //carried
+                    indexArr[i][roundInd] = indexArr[i][roundInd-1] + 1;    //it doesn't matter when it overflew again
                 }else{
                     break;
                 }
             }
-            if(indexArr[i][length-1] > arraySize-1){
+            if(indexArr[i][length-1] > arraySize-1){    //we only need to check the highest index
                 roundInd = roundIndex(indexArr[i],length,arraySize);
                 for(int32_t j = roundInd;j < length;j++){
-                    indexArr[i][j] = indexArr[i][j-1] + 1;
+                    indexArr[i][j] = indexArr[i][j-1] + 1;  //processing like line 95
                 }
             }
         }
@@ -122,15 +126,15 @@ int32_t** findIndex(int32_t arraySize,int32_t length){
     return indexArr;
 }
 
-int32_t numOfRow(int32_t upper,int32_t lower){  //取C函式，計算所有的可能數 
+int32_t numOfRow(int32_t upper,int32_t lower){  //C upper 取 lower的函式，計算所有的可能數 
     if(upper == lower || lower == 0){
         return 1;
     }else{
-        return numOfRow(upper-1,lower) + numOfRow(upper-1,lower-1);
+        return numOfRow(upper-1,lower) + numOfRow(upper-1,lower-1); //Pascal Theorem
     }
 } 
 
-int32_t roundIndex(int32_t *indexArr,int32_t length,int32_t arrSize){
+int32_t roundIndex(int32_t *indexArr,int32_t length,int32_t arrSize){ //to find a lowest index needed to be carry
     for(int32_t i = 0;i < arrSize;i++){
         if(indexArr[i] > arrSize){
             return i;
