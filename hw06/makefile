@@ -1,8 +1,9 @@
-all:int_editor.o step_ctrl.o rotation.o projection.o
+all:int_editor.o step_ctrl.o rotation.o projection.o shuffle.o
 	gcc hw0601.c int_editor.o -o hw0601
 	gcc hw0602.c step_ctrl.o -o hw0602
 	gcc hw0603.c rotation.o -o hw0603 -lm
 	gcc hw0604.c projection.o -o hw0604
+	gcc hw0605.c shuffle.o -o hw0605
 int_editor:
 	gcc -c int_editor.c -o int_editor.o
 step_ctrl:
@@ -11,5 +12,7 @@ rotation:
 	gcc -c rotation.c -o rotation.o
 projection:
 	gcc -c projection.c -o projection.o
+shuffle:
+	gcc -c shuffle.c -o shuffle.o
 clean:
-	rm -rf *.o hw0601 hw0602 hw0603 hw0604
+	rm -rf *.o hw0601 hw0602 hw0603 hw0604 hw0605
