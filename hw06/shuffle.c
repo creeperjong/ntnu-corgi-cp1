@@ -16,7 +16,7 @@ int32_t check(const uint8_t player[13]){
 
 void print_card(const uint8_t player[13]){
     for(int32_t i = 0;i < 13;i++){
-        printf("%d ",player[i]);
+        printf("%2d ",player[i]);
     }
     printf("\n");
 }
@@ -83,7 +83,7 @@ int32_t func03(int32_t a,int32_t b){
     newNum_a = suit_a * 13 + value_a + 1;
     newNum_b = suit_b * 13 + value_b + 1;
 
-    if( value_a < value_b){
+    if( newNum_a < newNum_b){
         return 1;
     }else{
         return 0;
