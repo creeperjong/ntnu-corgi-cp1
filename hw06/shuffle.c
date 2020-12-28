@@ -73,6 +73,9 @@ int32_t func02(int32_t a,int32_t b){
     if(value_a == 1)value_a = 14;
     if(value_b == 1)value_b = 14;
 
+    suit_a = 3 - suit_a;
+    suit_b = 3 - suit_b;
+
     newNum_a = value_a * 10 + suit_a;
     newNum_b = value_b * 10 + suit_b;
 
