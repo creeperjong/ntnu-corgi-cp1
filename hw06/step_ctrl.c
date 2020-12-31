@@ -20,8 +20,15 @@ void action(int32_t* act,int32_t* ptrIndex,int32_t input){
             }
             (*ptrIndex) = 9;
         }
+
         act[*ptrIndex] = input;
         (*ptrIndex)++;
+
+        if(*ptrIndex < 10){
+            for(int32_t i = *ptrIndex;i < 9;i++){
+                act[i] = 0;
+            }
+        }
     }else{
         printf("Invalid Input!\n");
     }
