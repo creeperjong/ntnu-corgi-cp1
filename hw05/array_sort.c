@@ -13,7 +13,7 @@ int32_t* sort(int32_t *arr,int32_t arr_size){
     //count & separate odd and even
 
     fori(0,arr_size){
-        if(*(arr+i) % 2 == 1){
+        if(*(arr+i) % 2 == 1 || (*(arr + i) % 2 == -1)){
             *(arr_result + odd_size) = *(arr+i);
             odd_size++;
         }else{

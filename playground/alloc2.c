@@ -35,6 +35,7 @@ int main(){
             printf( "   The address of column %ld is %p\n",j,&a[i][j]);
         }
     }
+    printf("%ld\n",sizeof(int64_t*));
 
 
     return 0;
